@@ -5,9 +5,11 @@ import { UTUploadButton } from "@/utils/uploadthing";
 import { Endpoints } from '@/app/api/uploadthing/core';
 
 export default function UploadButton({
-  endpoint
+  endpoint,
+  collectionId
 } : {
-  endpoint: Endpoints
+  endpoint: Endpoints;
+  collectionId?: string;
 }) {
   return (
     <UTUploadButton

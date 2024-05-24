@@ -7,6 +7,7 @@ export default withUt({
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./site/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./toast/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
