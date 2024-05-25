@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
 
 
   if (!!token && request.nextUrl.pathname.startsWith('/sign-in')) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   } 
 
   if (!token && request.nextUrl.pathname.startsWith('/dashboard')) {

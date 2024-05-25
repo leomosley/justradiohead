@@ -3,10 +3,13 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 // Add an image to a collection
-export async function PUT(request: Request, { params }: { params: { collectionId: string; imageId: string } }) {
-  try {
-    const { collectionId, imageId } = params;
+export async function PUT(request: Request) {
+  const url = new URL(request.url);
+  const paths = url.pathname.split('/');
+  const collectionId = paths[2];
+  const imageId = paths.pop();
 
+  try {
     const collection = await prisma.collection.update({
       where: { id: collectionId },
       data: {
@@ -23,9 +26,12 @@ export async function PUT(request: Request, { params }: { params: { collectionId
 }
 
 // Remove an image from a collection
-export async function DELETE(request: Request, { params }: { params: { collectionId: string; imageId: string } }) {
+export async function DELETE(request: Request) {
   try {
-    const { collectionId, imageId } = params;
+    const url = new URL(request.url);
+    const paths = url.pathname.split('/');
+    const collectionId = paths[2];
+    const imageId = paths.pop();
 
     const collection = await prisma.collection.update({
       where: { id: collectionId },
