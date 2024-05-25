@@ -20,7 +20,7 @@ export default function Page() {
 
       if (result?.ok) {
         toastSuccess("Succesfully logged in");
-        router.push("/");
+        router.push("/dashboard");
       } else {
         toastWarning("Error")
       }

@@ -8,7 +8,7 @@ import storeImage from '@/utils/storeImage';
 export default function UploadButton({
   endpoint,
   name,
-  description=name,
+  description="_",
   collectionId
 } : {
   endpoint: Endpoints;

@@ -1,8 +1,5 @@
-import LogoutButton from '@/site/LogoutButton'
-import React from 'react'
+import { redirect } from 'next/navigation';
 
 export default function Page() {
-  return (
-    <div><LogoutButton /></div>
-  )
+  return redirect('/dashboard/overview');
 }
