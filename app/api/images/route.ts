@@ -12,15 +12,26 @@ export async function GET() {
   }
 }
 
-// POST a new image
+// POST a new image 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    const { imageURL, name, description } = await request.json();
+    if (!imageURL || !name || !description) {
+      return NextResponse.json({ error: `missing required fields` }, { status: 400 });
+    }
+
     const newImage = await prisma.images.create({
-      data,
+      data: {
+        imageURL,
+        name,
+        description,
+      },
     });
+
     return NextResponse.json(newImage, { status: 201 });
   } catch (error) {
+    console.error('Error creating image:', error);
     return NextResponse.json({ error: 'Error creating image' }, { status: 500 });
   }
 }
+

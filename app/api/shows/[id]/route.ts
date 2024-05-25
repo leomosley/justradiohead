@@ -1,5 +1,5 @@
 // /app/api/shows/[id]/route.ts
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import prisma from '@/lib/prisma';  // Make sure you have a prisma client set up
 
 // GET a show by ID
@@ -37,9 +37,10 @@ export async function PATCH(request: Request, { params }: { params: { id: string
 }
 
 // DELETE a show by ID
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest) {
+  const url = new URL(request.url);
+  const id = url.pathname.split('/').pop();
   try {
-    const { id } = params;
     await prisma.show.delete({
       where: { id },
     });
