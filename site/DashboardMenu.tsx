@@ -17,7 +17,10 @@ export default function DashboardMenu() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex justify-between w-full sm:w-auto sm:flex-col gap-2 p-4 sm:p-6 min-w-48">
+    <nav className={clsx(
+      "flex justify-between w-full p-4 bg-neutral-950 top-24 z-40 sticky",
+      "sm:w-auto sm:flex-col sm:p-6 sm:gap-2 sm:min-w-48 sm:justify-normal sm:top-24 sm:h-dvh"
+    )}>
       {navigation.map((nav, index) => (
         <Link
           key={nav.href}

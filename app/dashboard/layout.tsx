@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-col mx-auto md:max-w-5xl">
+    <main className="flex flex-col mx-auto md:max-w-6xl">
       <DashboardHeader />
       <section className="flex flex-col sm:flex-row">
         <DashboardMenu />

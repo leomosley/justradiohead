@@ -3,7 +3,7 @@ export interface AdminUser {
   name?: string;
 }
 
-export interface Show {
+export interface ShowModel {
   id: string;
   title: string;
   venue: string;
@@ -14,7 +14,7 @@ export interface Show {
   updatedAt: string;
 }
 
-export interface Image {
+export interface ImageModel {
   id: string;
   imageURL: string;
   name: string;
@@ -23,7 +23,7 @@ export interface Image {
   updatedAt: string;
 }
 
-export interface Collection {
+export interface CollectionModel {
   id: string;
   title: string;
   description: string;

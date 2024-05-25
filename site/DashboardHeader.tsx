@@ -2,7 +2,7 @@ import { HiQuestionMarkCircle } from "react-icons/hi";
 
 export default function DashboardHeader() {
   return (
-    <header className="flex items-center p-4 gap-4">
+    <header className="flex items-center p-4 gap-4 sticky bg-neutral-950 top-0 h-18 z-50">
       <div className="w-16 h-16 rounded-full bg-white"></div>
       <h1 className="text-4xl font-extrabold tracking-tight">
         <span className="text-red-600">JUST&nbsp;</span>
@@ -14,5 +14,5 @@ export default function DashboardHeader() {
         <span className="text-sm hidden sm:block pr-10">Help</span>
       </div>
     </header>
-  )
+  );
 }
