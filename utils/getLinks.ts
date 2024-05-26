@@ -3,7 +3,7 @@ import { LinksModel } from "@/types";
 export default async function getLinks(limit?: number) {
   try {
     const isServer = typeof window === 'undefined';
-    const baseUrl = isServer ? process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000' : '';
+    const baseUrl = isServer ? process.env.VERCEL_URL || 'http://localhost:3000' : '';
 
     const response = await fetch(`${baseUrl}/api/links`, {
       method: 'GET',
