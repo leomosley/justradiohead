@@ -2,8 +2,7 @@ import { ImageModel } from "@/types";
 
 export default async function getImage(id: string) {
   try {
-    const isServer = typeof window === 'undefined';
-    const baseUrl = isServer ? process.env.VERCEL_URL || 'http://localhost:3000' : '';
+    const baseUrl = process.env.VERCEL ? '' : 'http://localhost:3000';
 
     const response = await fetch(`${baseUrl}/api/images/${id}`, {
       method: 'GET',

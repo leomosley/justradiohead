@@ -2,8 +2,7 @@ import { LinksModel } from "@/types";
 
 export default async function getLink(id: string) {
   try {
-    const isServer = typeof window === 'undefined';
-    const baseUrl = isServer ? process.env.VERCEL_URL || 'http://localhost:3000' : '';
+    const baseUrl = process.env.VERCEL ? '' : 'http://localhost:3000';
 
     const response = await fetch(`${baseUrl}/api/links/${id}`, {
       method: 'GET',
