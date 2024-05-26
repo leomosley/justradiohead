@@ -21,6 +21,14 @@ model Show {
   updatedAt  DateTime @updatedAt @map("updated_at")
 }
 
+model Links {
+  id         String   @id @default(cuid())
+  text       String
+  url        String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+}
+
 model Images {
   id          String   @id @default(cuid())
   imageURL    String

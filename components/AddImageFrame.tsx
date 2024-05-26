@@ -1,8 +1,14 @@
+import Link from "next/link";
 
 export default function AddImageFrame() {
   return (
-    <div className="w-24 h-44">
-      AddImageFrame
+    <div className="w-24 h-44 bg-white">
+      <Link
+        className=""
+        href="/dashboard/gallery/images/add"
+      >
+        <span>Add image</span>
+      </Link>
     </div>
   );
 }

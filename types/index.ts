@@ -10,8 +10,8 @@ export interface ShowModel {
   location: string;
   ticketLink: string;
   date: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ImageModel {
@@ -19,14 +19,22 @@ export interface ImageModel {
   imageURL: string;
   name: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface CollectionModel {
   id: string;
   title: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface LinksModel {
+  id: string;
+  text: string;
+  url: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

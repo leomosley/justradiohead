@@ -1,11 +1,11 @@
-import { ImageModel } from "@/types";
+import { LinksModel } from "@/types";
 
-export default async function getImage(id: string) {
+export default async function getLink(id: string) {
   try {
     const isServer = typeof window === 'undefined';
     const baseUrl = isServer ? process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000' : '';
 
-    const response = await fetch(`${baseUrl}/api/images/${id}`, {
+    const response = await fetch(`${baseUrl}/api/links/${id}`, {
       method: 'GET',
       cache: 'no-store'
     });
@@ -14,9 +14,9 @@ export default async function getImage(id: string) {
       throw new Error('Network response was not ok');
     }
 
-    return await response.json() as ImageModel;
+    return await response.json() as LinksModel;
   } catch (error) {
-    console.error('Error fetching images:', error);
+    console.error('Error fetching link:', error);
     return [];
   }
 }

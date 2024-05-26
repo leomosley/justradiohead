@@ -6,3 +6,29 @@ body {
   @apply
     bg-neutral-950
 }
+
+.max-h-half {
+  max-height: 50dvh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+ @apply bg-neutral-950
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+ @apply bg-neutral-900 rounded-full
+}
+
+.hide-scrollbar{
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar { 
+  display: none;
+}
