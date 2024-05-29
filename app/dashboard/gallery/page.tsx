@@ -1,5 +1,5 @@
-import AddImageFrame from "@/components/AddImageFrame";
-import ImageFrame from "@/components/ImageFrame";
+import AddImageItem from "@/components/AddImageItem";
+import ImageItem from "@/components/ImageItem";
 import getCollections from "@/utils/getCollections";
 import getImages from "@/utils/getImages";
 import clsx from "clsx";
@@ -17,8 +17,8 @@ export default async function Page() {
       <div className="flex flex-wrap gap-4 mb-8">
         {imageArray.map((image, index) => (
           index === images.length 
-          ? <AddImageFrame key={index} />
-          : <ImageFrame key={index} image={image} />
+          ? <AddImageItem key={index} />
+          : <ImageItem key={index} image={image} />
         ))}  
       </div>
       <h2 className="text-neutral-200 text-3xl font-bold tracking-tight mb-2">Collections</h2>

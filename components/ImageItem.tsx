@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Images } from '@prisma/client';
 
-export default function ImageFrame({
+export default function ImageItem({
   image,
   className
 } : {

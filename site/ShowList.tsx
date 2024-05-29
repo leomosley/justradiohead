@@ -1,5 +1,6 @@
 import ShowItem from '@/components/ShowItem';
 import getShows from '@/utils/getShows';
+import clsx from 'clsx';
 import React from 'react';
 
 const parseDate = (dateStr: string) => {
@@ -9,7 +10,11 @@ const parseDate = (dateStr: string) => {
 
 const currentDate = new Date();
 
-export default async function ShowList() {
+export default async function ShowList({
+  className,
+} : {
+  className?: string;
+}) {
   const shows = await getShows();
   const sorted = shows
     .filter(item => {
@@ -23,7 +28,10 @@ export default async function ShowList() {
     });
 
   return (
-    <div className="flex flex-col gap-1 overflow-y-auto overflow-x-hidden max-h-half hide-scrollbar">
+    <div className={clsx(
+      "flex flex-col gap-1",
+      className
+    )}>
       {sorted.map((show, index) => (
         <ShowItem key={show.id} show={show} />
       ))}

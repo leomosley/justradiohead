@@ -40,7 +40,7 @@ export default async function Home() {
       </section>
       <section id="shows" className="bg-white p-4 max-h-half">
         <h1 className="text-xl font-semibold pb-2 text-neutral-950 border-b border-b-neutral-950">Upcoming Shows</h1>
-        <ShowList />
+        <ShowList className="overflow-y-auto overflow-x-hidden max-h-half hide-scrollbar" />
       </section>
       <section id="gallery" className="bg-red-600 p-4">
 

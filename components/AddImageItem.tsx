@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function AddImageFrame() {
+export default function AddImageItem() {
   return (
     <div className="w-24 h-44 bg-white">
       <Link

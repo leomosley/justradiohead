@@ -1,4 +1,4 @@
-import LinkRow from '@/components/LinkRow';
+import LinkItem from '@/components/LinkItem';
 import { Links } from '@prisma/client';
 
 export default function LinkList({
@@ -14,7 +14,7 @@ export default function LinkList({
         <div className="w-12"></div>
       </div>
       {links.map((link, index) => (
-        <LinkRow key={link.id} link={link} />
+        <LinkItem key={link.id} link={link} />
       ))}
     </div>
   );

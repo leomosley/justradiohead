@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { HiCheck, HiPencil, HiX } from 'react-icons/hi';
 import { Links } from '@prisma/client';
 
-export default function LinkRow({
+export default function LinkItem({
   link
 } : {
   link: Links;

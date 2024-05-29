@@ -4,6 +4,7 @@ import "./globals.css";
 import ToasterClient from "@/toast/ToasterClient";
 import AuthProvider from "@/site/AuthProvider";
 import AdminPanel from "@/site/AdminPanel";
+import AppStateProvider from "@/state/AppStateProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,13 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          {children}
-          <AdminPanel />
-          <ToasterClient />
-        </body>
-      </html>
+      <AppStateProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            {children}
+            <AdminPanel />
+            <ToasterClient />
+          </body>
+        </html>
+      </AppStateProvider>
     </AuthProvider>
   );
 }
