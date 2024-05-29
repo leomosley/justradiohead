@@ -7,7 +7,6 @@ export default function ToasterClient() {
       toastOptions={{
         classNames: {
           toast: clsx(
-            'font-mono font-normal',
             '!border-gray-200 dark:!border-gray-800',
           ),
         },

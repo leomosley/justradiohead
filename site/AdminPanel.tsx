@@ -6,10 +6,11 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
 export default function AdminPanel() {
-  const session = useSession();
+  const { data: session, status} = useSession();
   const pathname = usePathname();
-
-  return session && (
+  
+  // add view switcher? 
+  return status === "authenticated" && (
     <div className="fixed bottom-4 right-4 p-2 rounded bg-white shadow-md">
       {pathname.startsWith('/dashboard') ? (
         <Link 
