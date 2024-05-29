@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ToasterClient from "@/toast/ToasterClient";
 import AuthProvider from "@/site/AuthProvider";
+import AdminPanel from "@/site/AdminPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           {children}
+          <AdminPanel />
           <ToasterClient />
         </body>
       </html>
