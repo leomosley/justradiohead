@@ -11,6 +11,8 @@ body {
   max-height: 50dvh;
 }
 
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -19,7 +21,6 @@ body {
  @apply bg-neutral-950
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
  @apply bg-neutral-900 rounded-full
 }
@@ -31,4 +32,48 @@ body {
 
 .hide-scrollbar::-webkit-scrollbar { 
   display: none;
+}
+
+/* Loader */
+.loader {
+  --uib-size: 100%;
+  --uib-color: white;
+  --uib-speed: .8s;
+  --uib-bg-opacity: 0.1;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  transform-origin: center;
+  animation: rotate var(--uib-speed) linear infinite;
+  will-change: transform;
+  overflow: visible;
+}
+
+.loader.light-loader {
+  --uib-color: white;
+}
+
+.loader.light-loader {
+  --uib-color: black;
+}
+
+.car {
+  fill: none;
+  stroke: var(--uib-color);
+  stroke-dasharray: 25, 75;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  transition: stroke 0.5s ease;
+}
+
+.track {
+  fill: none;
+  stroke: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+  transition: stroke 0.5s ease;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }
