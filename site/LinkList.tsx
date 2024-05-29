@@ -1,10 +1,10 @@
-import { LinksModel } from '@/types'
-import LinkRow
- from '@/components/LinkRow';
+import LinkRow from '@/components/LinkRow';
+import { Links } from '@prisma/client';
+
 export default function LinkList({
   links
 } : {
-  links: LinksModel[];
+  links: Links[];
 }) {
   return (
     <div className="flex flex-col">
