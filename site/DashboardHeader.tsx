@@ -17,7 +17,7 @@ export default function DashboardHeader() {
       {/* Help (contact details, guide, etc, markdown docs?) */}
       <div className="flex gap-1 items-center ml-auto text-neutral-500">
         <HiQuestionMarkCircle className=""/>
-        <span className="text-sm hidden sm:block pr-10">Help</span>
+        <span className="text-sm hidden sm:block pr-4">Help</span>
       </div>
     </header>
   );
