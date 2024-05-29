@@ -1,26 +1,21 @@
-import { CollectionModel } from "@/types";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default async function getCollections(limit?: number) {
   try {
-    const baseUrl = process.env.VERCEL ? '' : 'http://localhost:3000';
-
-    const response = await fetch(`${baseUrl}/api/collections`, {
-      method: 'GET',
-      cache: 'no-store'
+    const response = await prisma.collection.findMany({
+      take: limit
     });
 
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+    if (!response) {
+      throw new Error('Error fetching collections');
     }
 
-    const data = await response.json() as CollectionModel[];
-    return limit 
-      ? data.slice(0, limit)
-      : data;
-
+    return response;
+    
   } catch (error) {
-    console.error('Error fetching collection:', error);
+    console.error(error);
     return [];
   }
 }

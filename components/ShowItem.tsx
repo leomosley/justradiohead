@@ -1,6 +1,6 @@
 "use client"
 
-import { ShowModel } from '@/types';
+import { Show } from '@prisma/client';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
@@ -10,7 +10,7 @@ import { HiOutlineTicket } from 'react-icons/hi';
 export default function ShowItem({
   show,
 } : {
-  show: ShowModel;
+  show: Show;
 }) {
   const pathname = usePathname();
   const { data: session } = useSession();

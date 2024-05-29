@@ -25,7 +25,7 @@ export default async function Home() {
           <span className="text-neutral-100">RADIOHEAD</span>
         </h1>
         <span className="text-neutral-200 mb-10">Description more desc more words and words with more words.</span>
-        <div className="flex flex-col mt-auto">
+        <div className="flex flex-col flex-wrap mt-auto">
           {links.map((link, index) => (
             <a
               className="group cursor-pointer p-1 w-fit"

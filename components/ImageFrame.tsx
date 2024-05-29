@@ -1,12 +1,12 @@
-import { ImageModel } from '@/types'
 import Image from 'next/image';
 import Link from 'next/link';
+import { Images } from '@prisma/client';
 
 export default function ImageFrame({
   image,
   className
 } : {
-  image: ImageModel;
+  image: Images;
   className?: string;
 }) {
   return (
@@ -26,6 +26,6 @@ export default function ImageFrame({
         //   <span className="">Open</span>
         // </Link>
       )}
-  </div>
-  )
+    </div>
+  );
 }

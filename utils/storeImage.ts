@@ -1,4 +1,7 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export default async function storeImage(
   imageURL: string,
@@ -6,25 +9,22 @@ export default async function storeImage(
   description: string,
 ) {
   try {
-    const response = await fetch('/api/images', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        imageURL, 
-        name, 
-        description 
-      }),
+    const response = await prisma.images.create({
+      data: {
+        name: name,
+        imageURL: imageURL,
+        description: description,
+      }
     });
-
-    if (response.ok) {
+    
+    if (response.id) {
       toastSuccess("Image uploaded");
     } else {
-      toastWarning("Error uploading image");
+      throw new Error("Error uploading image");
     }
   } catch (error) {
     toastWarning("Error uploading image");
-    console.error('Error making POST request:', error);
   }
 };
+
+
