@@ -1,4 +1,4 @@
-import getImages from '@/utils/getImages'
+import getImages from '@/utils/images/getImages'
 
 export default async function Page() {
   const images = await getImages();
