@@ -1,7 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export default async function storeImage(
   imageURL: string,

@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { HiCheck, HiOutlineTicket, HiPencil, HiX } from 'react-icons/hi';
 import LoadingSpinner from './LoadingSpinner';
 import DateInput from './DateInput';
+import updateShow from '@/utils/updateShow';
 
 export default function ShowItem({
   show,
@@ -41,6 +42,14 @@ export default function ShowItem({
 
   const submit = () => {
     setLoading(true);
+    let data = {
+      date: date,
+      title: title,
+      venue: venue,
+      location: location,
+      tickectLink: tickectLink,
+    }
+    updateShow(show.id, data);
     setLoading(false);
   }
 
@@ -52,7 +61,7 @@ export default function ShowItem({
         : "border-b border-b-neutral-950"
     )}>
       {editing ? (
-        <div className="grid grid-cols-2 grid-rows-3 gap-2 w-full">
+        <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full">
           <div className="flex flex-col p-1">
             <label className="text-lg font-semibold mb-2">Date</label>
             <DateInput
@@ -86,7 +95,7 @@ export default function ShowItem({
               onChange={(e) => setTicketLink(e.currentTarget.value)}
             />
           </div>
-          <div className="flex items-end justify-between sm:justify-end gap-2 col-span-2">
+          <div className="flex items-end justify-between sm:justify-end gap-2 col-span-2 h-fit">
             <button
               className="bg-neutral-800 px-4 py-1 rounded justify-center"
               onClick={toggleEditing}
@@ -110,7 +119,7 @@ export default function ShowItem({
         <>
         <div className="flex w-16 gap-0.5 items-baseline">
           <span className="text-xl">{date.slice(0, 2)}</span>
-          <span className="text-sm">{months[Number(date.slice(3, 5))]}</span>
+          <span className="text-sm">{months[Number(date.slice(3, 5))-1]}</span>
         </div>
         <span className="flex-1 text-md">{title}</span>
         <span 

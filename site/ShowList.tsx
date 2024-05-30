@@ -1,3 +1,4 @@
+import AddShowItem from '@/components/AddShowItem';
 import ShowItem from '@/components/ShowItem';
 import getShows from '@/utils/getShows';
 import clsx from 'clsx';
@@ -35,6 +36,7 @@ export default async function ShowList({
       {sorted.map((show, index) => (
         <ShowItem key={show.id} show={show} />
       ))}
+      <AddShowItem />
     </div>
   );
 }
