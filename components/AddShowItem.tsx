@@ -89,6 +89,39 @@ export default function AddShowItem() {
               onChange={(e) => setTicketLink(e.currentTarget.value)}
             />
           </div>
+          {preview && (
+            <>
+            <span className="px-2 font-semibold">Preview</span>
+            <div className="flex gap-2 items-center justify-between px-2 py-2 sm:py-4 col-span-2">
+              <div className="flex w-16 gap-0.5 items-baseline">
+                <span className="text-xl">{date.slice(0, 2)}</span>
+                <span className="text-sm">{months[Number(date.slice(3, 5))-1]}</span>
+              </div>
+              <span className="flex-1 text-md">{title}</span>
+              <span 
+                className={clsx(
+                  "flex-1 text-xs sm:text-sm text-balance",
+                  onDashboard
+                    ? "text-neutral-100"
+                    : "text-neutral-800"
+                )}
+              >
+                {location}
+              </span>
+              <a 
+                className={clsx(
+                  "flex items-center gap-2 p-1.5 rounded",
+                  "hover:text-neutral-100 hover:bg-red-700 transition duration-150 cursor-pointer"
+                )}
+                target="_blank"
+                href={tickectLink}
+              >
+                <span className="hidden lg:block text-md">Tickets</span>
+                <HiOutlineTicket className="w-5 h-5" />
+              </a>
+            </div>
+            </>
+          )}
           <div className="flex items-end justify-between gap-2 col-span-2 h-fit">
             <button
               className="bg-neutral-800 px-4 py-1 rounded justify-center"
@@ -99,7 +132,7 @@ export default function AddShowItem() {
             </button>
             <div>
               <button
-                className="bg-neutral-200 px-4 py-1 rounded justify-center mr-2"
+                className="bg-white px-4 py-1 rounded justify-center mr-2"
                 onClick={() => setPreview(p => !p)}
                 disabled={loading}
               >
@@ -129,36 +162,6 @@ export default function AddShowItem() {
         >
           <HiPlus className="w-6 h-6"/>
         </button>
-      )}
-      {preview && (
-        <div className="flex w-full gap-2 items-center justify-between px-2 py-2 sm:py-4">
-          <div className="flex w-16 gap-0.5 items-baseline">
-            <span className="text-xl">{date.slice(0, 2)}</span>
-            <span className="text-sm">{months[Number(date.slice(3, 5))-1]}</span>
-          </div>
-          <span className="flex-1 text-md">{title}</span>
-          <span 
-            className={clsx(
-              "flex-1 text-xs sm:text-sm text-balance",
-              onDashboard
-                ? "text-neutral-100"
-                : "text-neutral-800"
-            )}
-          >
-            {location}
-          </span>
-          <a 
-            className={clsx(
-              "flex items-center gap-2 p-1.5 rounded",
-              "hover:text-neutral-100 hover:bg-red-700 transition duration-150 cursor-pointer"
-            )}
-            target="_blank"
-            href={tickectLink}
-          >
-            <span className="hidden lg:block text-md">Tickets</span>
-            <HiOutlineTicket className="w-5 h-5" />
-          </a>
-        </div>
       )}
     </div>
   );
