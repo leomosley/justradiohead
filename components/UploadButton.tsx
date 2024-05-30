@@ -3,7 +3,7 @@
 import React from 'react'
 import { UTUploadButton } from "@/utils/uploadthing";
 import { Endpoints } from '@/app/api/uploadthing/core';
-import storeImage from '@/utils/storeImage';
+import createImage from '@/utils/images/createImage';
 
 export default function UploadButton({
   endpoint,
@@ -20,7 +20,7 @@ export default function UploadButton({
     <UTUploadButton
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
-        storeImage(
+        createImage(
           res[0].url,
           name,
           description,
