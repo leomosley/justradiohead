@@ -1,4 +1,4 @@
-import getCollection from '@/utils/getColleciton';
+import getCollection from '@/utils/collections/getColleciton';
 import React, { Suspense } from 'react'
 
 export default async function Page({ params }: { params: { id: string }}) {

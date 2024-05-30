@@ -1,4 +1,4 @@
-import getCollections from '@/utils/getCollections'
+import getCollections from '@/utils/collections/getCollections'
 
 export default async function Page() {
   const images = await getCollections();

@@ -7,16 +7,19 @@ import React, { useEffect, useState } from 'react';
 import { HiCheck, HiOutlineTicket, HiPencil, HiPlus, HiPlusCircle, HiX } from 'react-icons/hi';
 import LoadingSpinner from './LoadingSpinner';
 import DateInput from './DateInput';
+import createShow from '@/utils/shows/createShow';
+import { useRouter } from 'next/navigation';
 
 export default function AddShowItem() {
   const { data: session, status } = useSession();
   const { onDashboard } = useAppState();
+  const router = useRouter();
 
   const [date, setDate] = useState<string>("01/01/2024");
   const [title, setTitle] = useState<string>("");
   const [venue, setVenue] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [tickectLink, setTicketLink] = useState<string>("");
+  const [ticketLink, setTicketLink] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [preview, setPreview] = useState<boolean>(false);
@@ -36,14 +39,24 @@ export default function AddShowItem() {
     setOpen(prev => !prev);
   }
 
-  const submit = () => {
+  const submit = async () => {
     setLoading(true);
     let data = {
       date: date,
       title: title,
       venue: venue,
       location: location,
-      tickectLink: tickectLink,
+      ticketLink: ticketLink,
+    }
+    try {
+      const response = await createShow(data);
+      
+      if (response && response.ok) {
+        toggleOpen(); 
+        router.refresh();
+      }
+    } catch (error) {
+      console.log(error);
     }
     setLoading(false);
   }
@@ -85,7 +98,7 @@ export default function AddShowItem() {
             <label className="text-lg font-semibold mb-2">Ticket Link</label>
             <textarea 
               className="outline-none bg-transparent resize-none text-neutral-300"
-              value={tickectLink}
+              value={ticketLink}
               onChange={(e) => setTicketLink(e.currentTarget.value)}
             />
           </div>
@@ -114,7 +127,7 @@ export default function AddShowItem() {
                   "hover:text-neutral-100 hover:bg-red-700 transition duration-150 cursor-pointer"
                 )}
                 target="_blank"
-                href={tickectLink}
+                href={ticketLink}
               >
                 <span className="hidden lg:block text-md">Tickets</span>
                 <HiOutlineTicket className="w-5 h-5" />

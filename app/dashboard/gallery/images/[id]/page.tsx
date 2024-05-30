@@ -1,4 +1,4 @@
-import getImage from '@/utils/getImage';
+import getImage from '@/utils/images/getImage';
 import React, { Suspense } from 'react'
 
 export default async function Page({ params }: { params: { id: string }}) {

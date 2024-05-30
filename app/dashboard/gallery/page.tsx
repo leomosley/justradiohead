@@ -1,7 +1,7 @@
 import AddImageItem from "@/components/AddImageItem";
 import ImageItem from "@/components/ImageItem";
-import getCollections from "@/utils/getCollections";
-import getImages from "@/utils/getImages";
+import getCollections from "@/utils/collections/getCollections";
+import getImages from "@/utils/images/getImages";
 import clsx from "clsx";
 import Link from "next/link";
 import { HiArrowCircleRight, HiPlusCircle } from "react-icons/hi";

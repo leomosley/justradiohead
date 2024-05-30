@@ -5,10 +5,12 @@ import { Show } from '@prisma/client';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
-import { HiCheck, HiOutlineTicket, HiPencil, HiX } from 'react-icons/hi';
+import { HiCheck, HiOutlineTicket, HiOutlineTrash, HiPencil, HiTrash, HiX } from 'react-icons/hi';
 import LoadingSpinner from './LoadingSpinner';
 import DateInput from './DateInput';
-import updateShow from '@/utils/updateShow';
+import updateShow from '@/utils/shows/updateShow';
+import deleteShow from '@/utils/shows/deleteShow';
+import { useRouter } from 'next/navigation';
 
 export default function ShowItem({
   show,
@@ -17,12 +19,13 @@ export default function ShowItem({
 }) {
   const { data: session, status } = useSession();
   const { onDashboard } = useAppState();
+  const router = useRouter();
 
   const [date, setDate] = useState<string>(show.date);
   const [title, setTitle] = useState<string>(show.title);
   const [venue, setVenue] = useState<string>(show.venue);
   const [location, setLocation] = useState<string>(show.location);
-  const [tickectLink, setTicketLink] = useState<string>(show.ticketLink);
+  const [ticketLink, setTicketLink] = useState<string>(show.ticketLink);
   const [editing, setEditing] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -31,25 +34,49 @@ export default function ShowItem({
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
 
-  const toggleEditing = () => {
-    setDate(show.date);
-    setTitle(show.title);
-    setVenue(show.venue);
-    setLocation(show.location);
-    setTicketLink(show.ticketLink);
+  const toggleEditing = (updated?: boolean) => {
+    if (!updated) {
+      setDate(show.date);
+      setTitle(show.title);
+      setVenue(show.venue);
+      setLocation(show.location);
+      setTicketLink(show.ticketLink);
+    }
     setEditing(prev => !prev);
   }
 
-  const submit = () => {
+  const submit = async () => {
     setLoading(true);
     let data = {
       date: date,
       title: title,
       venue: venue,
       location: location,
-      tickectLink: tickectLink,
+      ticketLink: ticketLink,
     }
-    updateShow(show.id, data);
+    try {
+      const response = await updateShow(show.id, data);
+      
+      if (response && response.ok) {
+        toggleEditing(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  }
+
+  const deleteItem = async () => {
+    setLoading(true);
+    try {
+      const response = await deleteShow(show.id);
+      
+      if (response && response.ok) {
+        router.refresh();
+      }
+    } catch (error) {
+      console.log(error);
+    }
     setLoading(false);
   }
 
@@ -91,14 +118,14 @@ export default function ShowItem({
             <label className="text-lg font-semibold mb-2">Ticket Link</label>
             <textarea 
               className="outline-none bg-transparent resize-none text-neutral-300"
-              value={tickectLink}
+              value={ticketLink}
               onChange={(e) => setTicketLink(e.currentTarget.value)}
             />
           </div>
           <div className="flex items-end justify-between sm:justify-end gap-2 col-span-2 h-fit">
             <button
               className="bg-neutral-800 px-4 py-1 rounded justify-center"
-              onClick={toggleEditing}
+              onClick={() => toggleEditing()}
               disabled={loading}
             >
               <span className="text-neutral-200 font-bold">Cancel</span>
@@ -138,19 +165,28 @@ export default function ShowItem({
             "hover:text-neutral-100 hover:bg-red-700 transition duration-150 cursor-pointer"
           )}
           target="_blank"
-          href={tickectLink}
+          href={ticketLink}
         >
           <span className="hidden lg:block text-md">Tickets</span>
           <HiOutlineTicket className="w-5 h-5" />
         </a>
         {(status === "authenticated" && onDashboard) && (
-          <button
-            className="flex p-1.5 rounded hover:bg-red-700 transition duration-150 cursor-pointer"
-            onClick={toggleEditing}
-            disabled={loading}
-          >
-            <HiPencil className="w-5 h-5"/>
-          </button>
+          <div className="flex gap-1.5 pl-2 border-l-2 border-l-neutral-800">
+            <button
+              className="flex p-1.5 rounded hover:bg-red-700 transition duration-150 cursor-pointer"
+              onClick={deleteItem}
+              disabled={loading}
+            >
+              <HiOutlineTrash className="w-5 h-5"/>
+            </button>
+            <button
+              className="flex p-1.5 rounded hover:bg-red-700 transition duration-150 cursor-pointer"
+              onClick={() => toggleEditing()}
+              disabled={loading}
+            >
+              <HiPencil className="w-5 h-5"/>
+            </button>
+          </div>
         )}
         </>
       )}

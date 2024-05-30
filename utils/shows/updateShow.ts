@@ -1,5 +1,4 @@
 import { toastSuccess, toastWarning } from "@/toast";
-import prisma from "@/lib/prisma";
 
 export default async function updateShow(
   id: string,
@@ -8,19 +7,21 @@ export default async function updateShow(
     title: string;
     venue: string;
     location: string;
-    tickectLink: string;
+    ticketLink: string;
   },
 ) {
   try {
-    const response = await prisma.show.update({
-      where: {
-        id: id
+    const response = await fetch(`/api/shows/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      data: data
-    });
+      body: JSON.stringify(data),
+    })
     
-    if (response.id) {
+    if (response.ok) {
       toastSuccess("Show information updated successfully");
+      return response;
     } else {
       throw new Error("Error updating show information");
     }

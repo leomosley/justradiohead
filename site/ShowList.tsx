@@ -1,6 +1,6 @@
 import AddShowItem from '@/components/AddShowItem';
 import ShowItem from '@/components/ShowItem';
-import getShows from '@/utils/getShows';
+import getShows from '@/utils/shows/getShows';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -13,15 +13,20 @@ const currentDate = new Date();
 
 export default async function ShowList({
   className,
+  showPast=false
 } : {
   className?: string;
+  showPast?: boolean; 
 }) {
-  const shows = await getShows();
-  const sorted = shows
-    .filter(item => {
-      const itemDate = parseDate(item.date);
-      return itemDate >= currentDate;
-    })
+  const data = await getShows();
+  const filtered = !showPast
+    ? data
+      .filter(item => {
+        const itemDate = parseDate(item.date);
+        return itemDate >= currentDate;
+      })
+    : data;
+  const shows = data
     .sort((a, b) => {
       const dateA = parseDate(a.date);
       const dateB = parseDate(b.date);
@@ -33,7 +38,7 @@ export default async function ShowList({
       "flex flex-col gap-1",
       className
     )}>
-      {sorted.map((show, index) => (
+      {shows.map((show, index) => (
         <ShowItem key={show.id} show={show} />
       ))}
       <AddShowItem />

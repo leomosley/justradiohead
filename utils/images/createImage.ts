@@ -1,7 +1,7 @@
 import { toastSuccess, toastWarning } from "@/toast";
 import prisma from "@/lib/prisma";
 
-export default async function storeImage(
+export default async function createImage(
   imageURL: string,
   name: string,
   description: string,
