@@ -7,12 +7,12 @@ export default function ImageItem({
   image,
   className
 } : {
-  image: Images;
+  image?: Images;
   className?: string;
 }) {
   return (
     <div className="flex relative w-32 h-56 bg-neutral-900">
-      {image.imageURL ? (
+      {image ? (
         <>
         <Image
           src={image.imageURL}
