@@ -1,7 +1,6 @@
 export default function getBaseURL() {
   if (typeof window !== 'undefined') return '';
-  const productionHost = process.env.VERCEL_URL;
-  return productionHost
-    ? `https://${productionHost}`
+  return process.env.VERCEL_ENV === "production"
+    ? `https://justradiohead.vercel.app`
     : 'http://localhost:3000';
 }
