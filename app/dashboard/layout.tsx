@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import DashboardMenu from "@/site/DashboardMenu";
 import DashboardHeader from "@/site/DashboardHeader";
-import DashboardTitle from "@/components/DashboardTitle";
+import DashboardTitle from "@/site/DashboardTitle";
 
 export const metadata: Metadata = {
   title: "Dashboard | Just Radiohead",

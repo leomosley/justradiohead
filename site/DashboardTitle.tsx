@@ -18,7 +18,7 @@ export default function DashboardTitle() {
   const paths = pathname.split('/').slice(2);
 
   return (
-    <div className="flex gap-2 h-12">
+    <div className="flex gap-2 h-12 mb-2">
       {paths.map((path, index) => (
         <div key={path} className="flex gap-2 items-center">
           <Link

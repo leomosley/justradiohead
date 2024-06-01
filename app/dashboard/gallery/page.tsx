@@ -1,5 +1,4 @@
 import AddImageItem from "@/components/AddImageItem";
-import DashboardTitle from "@/components/DashboardTitle";
 import ImageItem from "@/components/ImageItem";
 import getCollections from "@/utils/collections/getCollections";
 import getImages from "@/utils/images/getImages";
@@ -13,7 +12,18 @@ export default async function Page() {
   const imageArray = [...Array(8)].map((_, i) => images[i] ?? {});
   
   return (
-    <div className="flex flex-col max-w-[600px]">
+    <div className="flex flex-col max-w-[560px]">
+      <div className="flex gap-2 items-baseline mb-2">
+        <h2 className="text-neutral-200 text-3xl font-bold tracking-tight">Images</h2>
+        <span className="text-red-700 text-3xl font-light">/</span>
+        <Link
+          className=""
+          href="/dashboard/gallery/images"
+        >
+          <span className="text-neutral-200 font-semibold hover:underline underline-offset-2 decoration-neutral-300 transition">See all →</span>
+
+        </Link>
+      </div>
       <div className="flex flex-wrap gap-4 mb-8">
         {imageArray.map((image, index) => (
           index === images.length 
