@@ -73,7 +73,7 @@ export default function LinkItem({
       {editing ? (
         <div className="grid grid-cols-2 grid-rows-1 gap-2 w-full">
           <div className="flex flex-col p-1">
-            <label className="text-lg font-semibold mb-2">Title</label>
+            <label className="text-lg font-semibold mb-2">Text</label>
             <input 
               className="outline-none bg-transparent text-neutral-300"
               value={text}
@@ -81,7 +81,7 @@ export default function LinkItem({
             />
           </div>
           <div className="flex flex-col p-1">
-            <label className="text-lg font-semibold mb-2">Location</label>
+            <label className="text-lg font-semibold mb-2">URL</label>
             <textarea 
               className="outline-none bg-transparent resize-none text-neutral-300"
               value={url}
