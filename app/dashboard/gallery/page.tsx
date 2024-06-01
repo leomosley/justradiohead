@@ -1,4 +1,5 @@
 import AddImageItem from "@/components/AddImageItem";
+import DashboardTitle from "@/components/DashboardTitle";
 import ImageItem from "@/components/ImageItem";
 import getCollections from "@/utils/collections/getCollections";
 import getImages from "@/utils/images/getImages";
@@ -13,7 +14,6 @@ export default async function Page() {
   
   return (
     <div className="flex flex-col max-w-[600px]">
-      <h1 className="text-neutral-200 text-4xl font-bold tracking-tight mb-2">Gallery</h1>
       <div className="flex flex-wrap gap-4 mb-8">
         {imageArray.map((image, index) => (
           index === images.length 

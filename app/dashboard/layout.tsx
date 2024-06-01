@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DashboardMenu from "@/site/DashboardMenu";
 import DashboardHeader from "@/site/DashboardHeader";
+import DashboardTitle from "@/components/DashboardTitle";
 
 export const metadata: Metadata = {
   title: "Dashboard | Just Radiohead",
@@ -19,7 +20,8 @@ export default function RootLayout({
       <DashboardHeader />
       <section className="flex flex-col sm:flex-row">
         <DashboardMenu />
-        <section className="flex w-full p-4 sm:p-6">
+        <section className="flex flex-col w-full p-4 sm:p-6">
+          <DashboardTitle />
           {children}
         </section>
       </section>
