@@ -1,8 +1,10 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import getBaseURL from "../getBaseURL";
 
 export default async function deleteLink(id: string) {
   try {
-    const response = await fetch(`/api/links/${id}`, {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/links/${id}`, {
       method: 'DELETE'
     })
     

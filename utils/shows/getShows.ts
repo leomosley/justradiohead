@@ -1,22 +1,21 @@
-import prisma from "@/lib/prisma";
+import { Show } from "@prisma/client";
+import getBaseURL from "../getBaseURL";
 
 export default async function getShows(limit?: number) {
   try {
-    const response = await prisma.show.findMany({
-      orderBy: {
-        date: 'desc'
-      },
-      take: limit
+    const base = getBaseURL();
+    const url = limit ? `/api/shows?limit=${limit}` : '/api/shows';
+    const response = await fetch(`${base}${url}`, {
+      method: 'GET',
     });
 
-    if (!response) {
+    if (!response.ok) {
       throw new Error('Error fetching shows');
     }
 
-    return response;
+    return await response.json() as Show[];
     
   } catch (error) {
     console.error(error);
-    return [];
   }
 }

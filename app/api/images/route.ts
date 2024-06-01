@@ -1,11 +1,15 @@
 // /app/api/images/route.ts
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import getLimit from '@/utils/getLimit';
 
 // GET all images
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const images = await prisma.images.findMany();
+    const limit = getLimit(request);
+    const images = await prisma.images.findMany({
+      take: limit
+    });
     return NextResponse.json(images);
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching images' }, { status: 500 });

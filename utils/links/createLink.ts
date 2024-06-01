@@ -1,4 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import getBaseURL from "../getBaseURL";
 
 export default async function createLink(
   data: {
@@ -7,7 +8,8 @@ export default async function createLink(
   },
 ) {
   try {
-    const response = await fetch('/api/links', {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/links`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

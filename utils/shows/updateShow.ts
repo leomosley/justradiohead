@@ -1,4 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import getBaseURL from "../getBaseURL";
 
 export default async function updateShow(
   id: string,
@@ -11,7 +12,8 @@ export default async function updateShow(
   },
 ) {
   try {
-    const response = await fetch(`/api/shows/${id}`, {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/shows/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import getBaseURL from "../getBaseURL";
 
 export default async function updateLink(
   id: string,
@@ -8,7 +9,8 @@ export default async function updateLink(
   },
 ) {
   try {
-    const response = await fetch(`/api/links/${id}`, {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/links/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

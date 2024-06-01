@@ -1,5 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
-import prisma from "@/lib/prisma";
+import getBaseURL from "../getBaseURL";
 
 export default async function createImage(
   imageURL: string,
@@ -7,16 +7,19 @@ export default async function createImage(
   description: string,
 ) {
   try {
-    const response = await prisma.images.create({
-      data: {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/images/`, {
+      method: 'POST',
+      body: JSON.stringify({
         name: name,
         imageURL: imageURL,
         description: description,
-      }
+      })
     });
     
-    if (response.id) {
+    if (response.ok) {
       toastSuccess("Image uploaded");
+      return response;
     } else {
       throw new Error("Error uploading image");
     }

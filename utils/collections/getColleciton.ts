@@ -1,19 +1,20 @@
-import prisma from "@/lib/prisma";
+import { Collection } from "@prisma/client";
+import getBaseURL from "../getBaseURL";
 
 export default async function getCollection(id: string) {
   try {
-    const response = await prisma.collection.findUnique({
-      where: {
-        id: id,
-      }
-    })
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/collections/${id}`, {
+      method: 'GET'
+    });
     
-    if (!response) {
+    if (!response.ok) {
       throw new Error('Error fetching collection');
     }
+    
+    return await response.json() as Collection;
 
   } catch (error) {
     console.error(error);
-    return [];
   }
 }

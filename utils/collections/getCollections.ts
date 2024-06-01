@@ -1,19 +1,21 @@
-import prisma from "@/lib/prisma";
+import { Collection } from "@prisma/client";
+import getBaseURL from "../getBaseURL";
 
 export default async function getCollections(limit?: number) {
   try {
-    const response = await prisma.collection.findMany({
-      take: limit
-    });
+    const base = getBaseURL();
+    const url = limit ? `/api/collections?limit=${limit}` : '/api/collections';
+    const response = await fetch(`${base}${url}`, {
+      method: 'GET',
+    })
 
-    if (!response) {
+    if (!response.ok) {
       throw new Error('Error fetching collections');
     }
 
-    return response;
+    return await response.json() as Collection[];
     
   } catch (error) {
     console.error(error);
-    return [];
   }
 }

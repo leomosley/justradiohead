@@ -1,9 +1,15 @@
+import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
+import { JWT } from "next-auth/jwt";
  
 const f = createUploadthing();
  
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
+const auth = async (request: NextRequest) => {
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  if (token) return { id: JSON.stringify(token) }; 
+};
  
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {

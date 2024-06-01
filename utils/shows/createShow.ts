@@ -1,4 +1,5 @@
 import { toastSuccess, toastWarning } from "@/toast";
+import getBaseURL from "../getBaseURL";
 
 export default async function createShow(
   data: {
@@ -10,7 +11,8 @@ export default async function createShow(
   },
 ) {
   try {
-    const response = await fetch('/api/shows', {
+    const base = getBaseURL();
+    const response = await fetch(`${base}/api/shows`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

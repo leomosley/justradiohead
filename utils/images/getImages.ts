@@ -1,19 +1,21 @@
-import prisma from "@/lib/prisma";
+import { Images } from "@prisma/client";
+import getBaseURL from "../getBaseURL";
 
 export default async function getImages(limit?: number) {
   try {
-    const response = await prisma.images.findMany({
-      take: limit
+    const base = getBaseURL();
+    const url = limit ? `/api/images?limit=${limit}` : '/api/images';
+    const response = await fetch(`${base}${url}`, {
+      method: 'GET'
     });
 
-    if (!response) {
+    if (!response.ok) {
       throw new Error('Error fetching shows');
     }
 
-    return response;
+    return await response.json() as Images[];
     
   } catch (error) {
     console.error(error);
-    return [];
   }
 }
