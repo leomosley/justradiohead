@@ -27,7 +27,7 @@ export default function DashboardMenu() {
           href={'/dashboard' + nav.href}
           className={clsx(
             "flex gap-2 p-2 rounded items-center transition duration-100",
-            pathname.endsWith(nav.href)
+            pathname.startsWith(`/dashboard${nav.href}`)
               ? "bg-red-700"
               : "bg-neutral-950 hover:bg-red-900"
             
