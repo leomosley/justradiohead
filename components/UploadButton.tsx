@@ -29,6 +29,14 @@ export default function UploadButton({
       onUploadError={(error: Error) => {
         console.log(`ERROR! ${error.message}`);
       }}
+      appearance={{
+        button: {
+          background: "#b91c1c"
+        },
+        allowedContent: {
+          display: "none"
+        }
+      }}
     />
   )
 }

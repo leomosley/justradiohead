@@ -18,6 +18,7 @@ export default function UploadDropzone({
 }) {
   return (
     <UTUploadDropzone
+      className="cursor-pointer"
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         createImage(
@@ -28,6 +29,24 @@ export default function UploadDropzone({
       }}
       onUploadError={(error: Error) => {
         console.log(`ERROR! ${error.message}`);
+      }}
+      appearance={{
+        button: {
+          background: "#b91c1c"
+        },
+        container: {
+          background: "#171717",
+          padding: "1rem"
+        },
+        label: {
+          color: "#e5e5e5"
+        },
+        uploadIcon: {
+          color: "#262626"
+        },
+        allowedContent: {
+          display: "none"
+        },
       }}
     />
   )
