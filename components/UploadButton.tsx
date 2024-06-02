@@ -18,7 +18,11 @@ export default function UploadButton({
 }) {
   return (
     <UTUploadButton
+      className="ut-button:ut-uploading:after:bg-red-700/50 ut-button:bg-red-700 ut-allowed-content:hidden"
       endpoint={endpoint}
+      config={{
+        mode: "manual"
+      }}
       onClientUploadComplete={(res) => {
         createImage(
           res[0].url,
@@ -28,14 +32,6 @@ export default function UploadButton({
       }}
       onUploadError={(error: Error) => {
         console.log(`ERROR! ${error.message}`);
-      }}
-      appearance={{
-        button: {
-          background: "#b91c1c"
-        },
-        allowedContent: {
-          display: "none"
-        }
       }}
     />
   )

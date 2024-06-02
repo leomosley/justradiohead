@@ -18,7 +18,7 @@ export default function UploadDropzone({
 }) {
   return (
     <UTUploadDropzone
-      className="cursor-pointer"
+      className="cursor-pointer ut-button:bg-red-700 ut-button:ut-uploading:after:bg-red-700/50 p-4 bg-neutral-900 ut-label:text-neutral-100 ut-allowed-content:hidden ut-upload-icon:text-neutral-800"
       endpoint={endpoint}
       onClientUploadComplete={(res) => {
         createImage(
@@ -27,26 +27,11 @@ export default function UploadDropzone({
           description,
         );
       }}
+      config={{
+        mode: "manual"
+      }}
       onUploadError={(error: Error) => {
         console.log(`ERROR! ${error.message}`);
-      }}
-      appearance={{
-        button: {
-          background: "#b91c1c"
-        },
-        container: {
-          background: "#171717",
-          padding: "1rem"
-        },
-        label: {
-          color: "#e5e5e5"
-        },
-        uploadIcon: {
-          color: "#262626"
-        },
-        allowedContent: {
-          display: "none"
-        },
       }}
     />
   )
