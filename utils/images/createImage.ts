@@ -14,7 +14,8 @@ export default async function createImage(
         name: name,
         imageURL: imageURL,
         description: description,
-      })
+      }),
+      cache: 'no-store'
     });
     
     if (response.ok) {

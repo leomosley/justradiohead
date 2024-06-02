@@ -6,7 +6,8 @@ export default async function getImages(limit?: number) {
     const base = getBaseURL();
     const url = limit ? `/api/images?limit=${limit}` : '/api/images';
     const response = await fetch(`${base}${url}`, {
-      method: 'GET'
+      method: 'GET',
+      cache: 'no-store'
     });
 
     if (!response.ok) {

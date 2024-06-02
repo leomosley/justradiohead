@@ -5,7 +5,8 @@ export default async function getImage(id: string) {
   try {
     const base = getBaseURL();
     const response = await fetch(`${base}/api/images/${id}`, {
-      method: 'GET'
+      method: 'GET',
+      cache: 'no-store'
     });
     
     if (!response.ok) {

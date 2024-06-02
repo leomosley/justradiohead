@@ -7,6 +7,7 @@ export default async function getLinks(limit?: number) {
     const url = limit ? `/api/links?limit=${limit}` : '/api/links';
     const response = await fetch(`${base}${url}`, {
       method: 'GET',
+      cache: 'no-store'
     });
 
     if (!response.ok) {

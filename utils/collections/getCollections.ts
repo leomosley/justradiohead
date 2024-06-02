@@ -7,6 +7,7 @@ export default async function getCollections(limit?: number) {
     const url = limit ? `/api/collections?limit=${limit}` : '/api/collections';
     const response = await fetch(`${base}${url}`, {
       method: 'GET',
+      cache: 'no-store'
     })
 
     if (!response.ok) {

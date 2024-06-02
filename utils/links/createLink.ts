@@ -15,6 +15,7 @@ export default async function createLink(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+      cache: 'no-store'
     })
     
     if (response.ok) {

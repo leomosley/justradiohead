@@ -5,7 +5,8 @@ export default async function deleteLink(id: string) {
   try {
     const base = getBaseURL();
     const response = await fetch(`${base}/api/links/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      cache: 'no-store'
     })
     
     if (response.ok) {
