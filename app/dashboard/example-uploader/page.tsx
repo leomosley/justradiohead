@@ -17,14 +17,14 @@ export default async function ImageUploader() {
       <span className="text-white">
         {JSON.stringify(images)}
       </span>
-      <UploadButton
+      {/* <UploadButton
         name="Test Image 3"
         endpoint="imageUploader" 
       />
       <UploadDropzone 
         name="Test Image 3"
         endpoint="imageUploader" 
-      />
+      /> */}
       <DeleteImageButton id="clwklw84y0003ebhv8z9iuus4" />
     </section>
   );

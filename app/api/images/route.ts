@@ -19,7 +19,7 @@ export async function GET(request: Request) {
 // POST a new image 
 export async function POST(request: Request) {
   try {
-    const { imageURL, name, description } = await request.json();
+    const { imageURL, name, description, collections } = await request.json();
     if (!imageURL || !name || !description) {
       return NextResponse.json({ error: `missing required fields` }, { status: 400 });
     }
@@ -29,6 +29,9 @@ export async function POST(request: Request) {
         imageURL,
         name,
         description,
+        collections: {
+          connect: collections
+        }
       },
     });
 

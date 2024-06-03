@@ -5,6 +5,7 @@ export default async function createImage(
   imageURL: string,
   name: string,
   description: string,
+  collections: { id: string}[]
 ) {
   try {
     const base = getBaseURL();
@@ -14,6 +15,7 @@ export default async function createImage(
         name: name,
         imageURL: imageURL,
         description: description,
+        collections: collections
       }),
       cache: 'no-store'
     });

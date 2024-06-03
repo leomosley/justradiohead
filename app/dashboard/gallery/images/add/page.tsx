@@ -1,14 +1,12 @@
-"use client";
+import ImageUploadForm from "@/site/ImageUploadForm";
+import getCollections from "@/utils/collections/getCollections";
 
-import React, { useState } from "react";
-
-export default function Page() {
-  const [name, setName] = useState<string>("");
-  const [desc, setDesc] = useState<string>("");
+export default async function Page() {
+  const collections = await getCollections();
 
   return (
-    <div className="flex flex-col">
-      
+    <div className="flex">
+      <ImageUploadForm collections={collections} />
     </div>
   );
 }

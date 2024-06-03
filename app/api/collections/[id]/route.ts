@@ -8,6 +8,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const { id } = params;
     const collection = await prisma.collection.findUnique({
       where: { id },
+      include: {
+        images: true,
+      }
     });
 
     if (!collection) {

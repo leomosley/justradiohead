@@ -6,7 +6,7 @@ import DashboardTitle from "@/site/DashboardTitle";
 export const metadata: Metadata = {
   title: "Dashboard | Just Radiohead",
   icons: [
-    { url: "../icon.png"}
+    { url: "https://justradiohead.vercel.app/icon.png"}
   ]
 };
 

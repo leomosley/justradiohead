@@ -9,12 +9,14 @@ export default function UploadButton({
   endpoint,
   name,
   description="_",
-  collectionId
+  collections,
+  setLoading
 } : {
   endpoint: Endpoints;
   name: string;
   description?: string;
-  collectionId?: string;
+  collections?: { id: string}[];
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   return (
     <UTUploadButton
@@ -23,12 +25,15 @@ export default function UploadButton({
       config={{
         mode: "manual"
       }}
+      onUploadBegin={() => setLoading(true)}
       onClientUploadComplete={(res) => {
         createImage(
           res[0].url,
           name,
           description,
+          collections ?? [],
         );
+        setLoading(false);
       }}
       onUploadError={(error: Error) => {
         console.log(`ERROR! ${error.message}`);
