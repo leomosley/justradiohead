@@ -4,20 +4,24 @@ import React from 'react'
 import { UTUploadButton } from "@/utils/uploadthing";
 import { Endpoints } from '@/app/api/uploadthing/core';
 import createImage from '@/utils/images/createImage';
+import { useRouter } from 'next/navigation';
 
 export default function UploadButton({
   endpoint,
   name,
-  description="_",
+  description="...",
   collections,
-  setLoading
+  setLoading,
+  refresh=false
 } : {
   endpoint: Endpoints;
   name: string;
   description?: string;
   collections?: { id: string}[];
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  refresh?: boolean;
 }) {
+  const router = useRouter();
   return (
     <UTUploadButton
       className="ut-button:ut-uploading:after:bg-red-700/50 ut-button:bg-red-700 ut-allowed-content:hidden"
@@ -33,6 +37,7 @@ export default function UploadButton({
           description,
           collections ?? [],
         );
+        refresh && router.refresh();
         setLoading(false);
       }}
       onUploadError={(error: Error) => {

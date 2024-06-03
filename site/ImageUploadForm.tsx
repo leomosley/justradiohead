@@ -49,6 +49,7 @@ export default function ImageUploadForm({
           endpoint="imageUploader"
           collections={collects}
           setLoading={setLoading}
+          refresh={true}
         /> 
       </div>
       <div className="flex gap-2">
