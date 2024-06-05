@@ -1,6 +1,7 @@
 // /app/api/images/[id]/route.ts
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { Collection } from '@prisma/client';
 
 // GET an image by ID
 export async function GET(request: Request, { params }: { params: { id: string } }) {
@@ -27,10 +28,42 @@ export async function GET(request: Request, { params }: { params: { id: string }
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
   try {
     const { id } = params;
-    const data = await request.json();
+    const { name, imageURL, descrption, collections }= await request.json();
+
+    const currentImage = await prisma.images.findUnique({
+      where: {
+        id: id
+      },
+      include: {
+        collections: true
+      }
+    });
+
+    if (!currentImage) {
+      throw new Error();
+    }
+
+    const currentCollectionsIds = currentImage.collections.map(c => c.id);
+
+    const collectionsToConnect = collections.filter(
+      (collection: Collection) => !currentCollectionsIds.includes(collection.id)
+    ).map((collection: Collection) => ({ id: collection.id }));
+
+    const collectionsToDisconnect = currentCollectionsIds.filter(
+      id => !collections.includes(id)
+    ).map(id => ({ id: id }));
+
     const updatedImage = await prisma.images.update({
       where: { id },
-      data,
+      data: {
+        name: name,
+        description: descrption,
+        imageURL: imageURL,
+        collections: {
+          connect: collectionsToConnect,
+          disconnect: collectionsToDisconnect
+        }
+      }
     });
 
     return NextResponse.json(updatedImage);
