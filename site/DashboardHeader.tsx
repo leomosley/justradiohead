@@ -8,8 +8,8 @@ export default function DashboardHeader() {
         className="flex items-center gap-4"
         href="/"
       >
-        <div className="w-16 h-16 rounded-full bg-white"></div>
-        <h1 className="text-4xl font-extrabold tracking-tight">
+        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white"></div>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
           <span className="text-red-600">JUST&nbsp;</span>
           <span className="text-neutral-100">RADIOHEAD</span>
         </h1>
