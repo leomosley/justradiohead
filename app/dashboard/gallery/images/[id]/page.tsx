@@ -1,11 +1,12 @@
+import EditImage from '@/components/EditImage';
 import getImage from '@/utils/images/getImage';
-import React, { Suspense } from 'react'
+import React from 'react'
 
 export default async function Page({ params }: { params: { id: string }}) {
   const image = await getImage(params.id);
-  return (
-    <Suspense fallback={<div className="text-white">loading...</div>}>
-      <div className="text-white">{JSON.stringify(image)}</div>
-    </Suspense>
-  )
+  return ( 
+    <div className="flex">
+      {image && <EditImage image={image} />}
+    </div>
+  );
 }
