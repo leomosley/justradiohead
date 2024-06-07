@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <main className="sm:grid sm:grid-cols-2 sm:grid-rows-2 sm:min-h-dvh">
-      <section id="about" className="flex flex-col p-4 max-h-half">
+      <section id="about" className="flex flex-col p-4 sm:max-h-half">
         <Link
           className="w-12 h-12 p-2 md:w-16 md:h-16 mt-2"
           href="/"
@@ -25,7 +25,7 @@ export default async function Home() {
             alt="icon"
           />
         </Link>
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4">
           <span className="text-red-600">JUST&nbsp;</span>
           <span className="text-neutral-100">RADIOHEAD</span>
         </h1>
