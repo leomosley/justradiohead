@@ -25,7 +25,7 @@ export default async function Home() {
             alt="icon"
           />
         </Link>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mt-4">
           <span className="text-red-600">JUST&nbsp;</span>
           <span className="text-neutral-100">RADIOHEAD</span>
         </h1>
