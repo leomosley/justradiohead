@@ -1,5 +1,5 @@
-import { Images } from "@prisma/client";
 import getBaseURL from "../getBaseURL";
+import { ImagesWithCollections } from "@/types";
 
 export default async function getImages(limit?: number) {
   try {
@@ -14,7 +14,7 @@ export default async function getImages(limit?: number) {
       throw new Error('Error fetching shows');
     }
 
-    return await response.json() as Images[];
+    return await response.json() as ImagesWithCollections[];
     
   } catch (error) {
     console.error(error);

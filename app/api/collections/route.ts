@@ -19,9 +19,19 @@ export async function GET(request: Request) {
 // POST a new collection
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    const { images, title, description } = await request.json();
+    if (!title || !description) {
+      return NextResponse.json({ error: `missing required fields` }, { status: 400 });
+    }
+
     const newCollection = await prisma.collection.create({
-      data,
+      data: {
+        title: title,
+        description: description,
+        images: {
+          connect: images
+        }
+      }
     });
     return NextResponse.json(newCollection, { status: 201 });
   } catch (error) {
