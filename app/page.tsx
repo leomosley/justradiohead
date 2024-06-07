@@ -30,7 +30,7 @@ export default async function Home() {
           <span className="text-neutral-100">RADIOHEAD</span>
         </h1>
         <span className="text-neutral-200 text-sm sm:text-base lg:text-lg mb-10 text-balance mt-2">
-          The UK's Leading Radiohead 'Tribute' Band.
+          The UK&apos;s Leading Radiohead &rsquo;Tribute&rsquo; Band.
           Respectfully performing songs from one of the 1990s and 2000s most loved bands.
         </span>
         <div className="mt-auto max-h-[50%]">
