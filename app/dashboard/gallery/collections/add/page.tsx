@@ -66,7 +66,9 @@ export default function Page() {
       <div className="flex gap-2 flex-wrap py-2">
         {images && images.map((image) => (
           <button
+            key={image.id}
             className={clsx(
+              
               "bg-neutral-900 p-2 border rounded-lg",
               selectedImages.some(item => item.id === image.id)
                 ? "border-neutral-200 text-neutral-200"

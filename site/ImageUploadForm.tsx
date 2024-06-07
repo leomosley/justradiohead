@@ -55,6 +55,7 @@ export default function ImageUploadForm({
       <div className="flex gap-2">
         {collections && collections.map((collection) => (
           <button
+            key={collection.id}
             className={clsx(
               "bg-neutral-900 p-2 border rounded-lg",
               collects.some(item => item.id === collection.id)
