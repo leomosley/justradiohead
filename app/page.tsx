@@ -3,7 +3,6 @@ import ShowList from "@/site/ShowList";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HiHome } from "react-icons/hi";
 
 export const metadata: Metadata = {
   title: "Home | Just Radiohead",
