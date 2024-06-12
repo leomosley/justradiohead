@@ -1,3 +1,4 @@
+import GalleryShowcase from "@/site/GalleryShowcase";
 import LinkList from "@/site/LinkList";
 import ShowList from "@/site/ShowList";
 import { Metadata } from "next";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <main className="sm:grid sm:grid-cols-2 sm:grid-rows-2 sm:min-h-dvh">
-      <section id="about" className="flex flex-col p-4 sm:max-h-half">
+      <section id="about" className="flex flex-col p-4 sm:max-h-half md:p-8">
         <Link
           className="w-12 h-12 p-2 md:w-16 md:h-16 mt-2"
           href="/"
@@ -36,14 +37,14 @@ export default async function Home() {
           <LinkList />
         </div>
       </section>
-      <section id="shows" className="bg-white p-4 max-h-half">
+      <section id="shows" className="bg-white p-4 md:p-8 max-h-half">
         <h1 className="text-xl font-semibold pb-2 text-neutral-950 border-b border-b-neutral-950">Upcoming Shows</h1>
         <ShowList className="overflow-y-auto overflow-x-hidden max-h-half hide-scrollbar" />
       </section>
-      <section id="gallery" className="bg-red-600 p-4">
-
+      <section id="gallery" className="bg-red-700 p-4 md:p-8">
+        <GalleryShowcase />
       </section>
-      <section id="shop" className="p-4">
+      <section id="shop" className="p-4 md:p-8">
 
       </section>
     </main>

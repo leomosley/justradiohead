@@ -7,9 +7,11 @@ import getLimit from '@/utils/getLimit';
 export async function GET(request: Request) {
   try {
     const limit = getLimit(request);
+
     const links = await prisma.links.findMany({
       take: limit
     });
+
     return NextResponse.json(links);
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching links' }, { status: 500 });
